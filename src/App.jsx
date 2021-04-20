@@ -1,26 +1,49 @@
 import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p>hihihihi</p>
-      </header>
-    </div>
-  );
+import React, {Component} from 'react';
+
+
+// Router
+import {HashRouter as Router, Route, Switch} from "react-router-dom";
+
+// CSS
+import './css/App.css';
+import './css/mobile.css';
+
+// Pages
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+
+// Components
+import Header from './components/Header'
+import Nav from './components/Nav'
+import Footer from './components/Footer';
+
+
+// App
+class App extends Component {
+  render() {
+      return (
+          <Router>
+                  <div>
+                    <Header/>
+                    <Nav/>
+                      <Switch>
+                          <Route exact path="/" component={Home}/>
+                          <Route exact path="/about" component={About}/>
+                          <Route exact path="/contact" component={Contact}/>
+                          <Route
+                              render={() => (
+                              <div>
+                                  <h3>404</h3>
+                              </div>
+                          )}/>
+                      </Switch>
+                  </div>
+          </Router>
+      );
+  }
 }
 
 export default App;
